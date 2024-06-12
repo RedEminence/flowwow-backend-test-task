@@ -31,9 +31,9 @@ class OpenExchangeRatesApiTest extends TestCase
         $result = $api->getLatestRates();
 
         $this->assertInstanceOf(LatestRatesDTO::class, $result);
-        $this->assertEquals($base, $result->getBase());
-        $this->assertEquals($rates, $result->getRates());
-        $this->assertEquals($timestamp, $result->getTimestamp());
+        $this->assertEquals($base, $result->base);
+        $this->assertEquals($rates, $result->rates);
+        $this->assertEquals($timestamp, $result->timestamp);
     }
 
     public function testGetLatestRatesWithException()

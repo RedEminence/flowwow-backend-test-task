@@ -27,12 +27,12 @@ class OpenExchangeRatesApi implements CurrencyExchangeApiInterface
         return $dto;
     }
 
-    private function makeRequest(string $method, string $endpoint, array $options = []): array
+    private function makeRequest(string $method, string $endpoint): array
     {
-        $allOptions = array_merge($options, ["headers" => ["Authorization" => "Token " . $this->apiKey]]);
+        $options = ["headers" => ["Authorization" => "Token " . $this->apiKey]];
 
         try {
-            $response = $this->client->request($method, self::BASE_URL . "/" . $endpoint, $allOptions);
+            $response = $this->client->request($method, self::BASE_URL . "/" . $endpoint, $options);
         } catch (ClientException $exception) {
             $response = $exception->getResponse();
             throw CouldNotGetResultFromApiException::create($response->getStatusCode(), $response->getBody()->getContents());

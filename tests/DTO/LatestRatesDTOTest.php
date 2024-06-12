@@ -13,8 +13,8 @@ class LatestRatesDTOTest extends TestCase
 
         $dto = new LatestRatesDTO($base, $rates, $timestamp);
 
-        $this->assertEquals($base, $dto->getBase());
-        $this->assertEquals($rates, $dto->getRates());
-        $this->assertEquals($timestamp, $dto->getTimestamp());
+        $this->assertEquals($base, $dto->base);
+        $this->assertEquals($rates, $dto->rates);
+        $this->assertEquals($timestamp, $dto->timestamp);
     }
 }

@@ -16,12 +16,12 @@ $api = new OpenExchangeRatesApi(new Client(), $apiKey);
 
 $dto = $api->getLatestRates();
 
-$base = $dto->getBase();
-print("timestamp: " . $dto->getTimestamp());
+$base = $dto->base;
+print("timestamp: " . $dto->timestamp);
 print("\n");
 print("\n");
 
-foreach ($dto->getRates() as $symbol => $value) {
+foreach ($dto->rates as $symbol => $value) {
     print($base . '/' . $symbol . ": " . $value);
     print("\n");
 }
