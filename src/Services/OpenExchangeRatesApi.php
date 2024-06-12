@@ -11,17 +11,12 @@ use GuzzleHttp\Exception\ClientException;
 
 class OpenExchangeRatesApi implements CurrencyExchangeApiInterface
 {
-    private string $baseUrl = "https://openexchangerates.org/api";
+    private const BASE_URL = "https://openexchangerates.org/api";
 
-    private string $apiKey;
-
-    private Client $client;
-
-    public function __construct(Client $client, string $apiKey)
-    {
-        $this->client = $client;
-        $this->apiKey = $apiKey;
-    }
+    public function __construct(
+        private Client $client, 
+        private string $apiKey)
+    {}
 
     public function getLatestRates(): LatestRatesDTO
     {
@@ -37,7 +32,7 @@ class OpenExchangeRatesApi implements CurrencyExchangeApiInterface
         $allOptions = array_merge($options, ["headers" => ["Authorization" => "Token " . $this->apiKey]]);
 
         try {
-            $response = $this->client->request($method, $this->baseUrl . "/" . $endpoint, $allOptions);
+            $response = $this->client->request($method, self::BASE_URL . "/" . $endpoint, $allOptions);
         } catch (ClientException $exception) {
             $response = $exception->getResponse();
             throw CouldNotGetResultFromApiException::create($response->getStatusCode(), $response->getBody()->getContents());
