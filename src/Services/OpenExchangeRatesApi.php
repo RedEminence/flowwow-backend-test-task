@@ -34,8 +34,8 @@ class OpenExchangeRatesApi implements CurrencyExchangeApiInterface
 
     private function makeRequest(string $method, string $endpoint, array $options = []): array
     {
-        $allOptions = array_merge($options, ["headers" => ["Authorization" => "Token ы" . $this->apiKey]]);
-        
+        $allOptions = array_merge($options, ["headers" => ["Authorization" => "Token " . $this->apiKey]]);
+
         try {
             $response = $this->client->request($method, $this->baseUrl . "/" . $endpoint, $allOptions);
         } catch (ClientException $exception) {
